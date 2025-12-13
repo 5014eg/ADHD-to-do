@@ -1,6 +1,7 @@
 {
   "name": "simple-adhd-todo-list",
   "version": "1.0.0",
+  "homepage": "https://5014eg.github.io/ADHD-to-do",
   "description": "A simple ADHD To-Do List PWA",
   "main": "src/index.js",
   "scripts": {
