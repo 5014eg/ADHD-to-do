@@ -22,7 +22,7 @@ const DayRow = ({ date, tasks, onToggleTask, onDeleteTask }) => {
         <div
             className={`w-full flex flex-col border border-gray-200 rounded-lg shadow-sm transition-colors ${isCurrentDay ? 'bg-blue-50' : 'bg-white'
                 } ${isOver ? 'drop-zone-over' : ''}`}
-            style={{ minHeight: '200px' }}
+            style={{ minHeight: (isFutureDay && tasks.length === 0) ? 'auto' : '200px' }}
         >
             {/* Day Header */}
             <div className={`p-4 border-b border-gray-200 ${isCurrentDay ? 'bg-blue-100' : 'bg-white'
@@ -34,6 +34,9 @@ const DayRow = ({ date, tasks, onToggleTask, onDeleteTask }) => {
                             {format(date, 'EEEE')}
                         </h2>
                         <p className="text-sm text-gray-500">{format(date, 'MMM d')}</p>
+                        {isCurrentDay && (
+                            <span className="text-xs text-blue-600 font-medium">📌 Сегодня</span>
+                        )}
                     </div>
                     {totalCount > 0 && (
                         <div className="flex items-center gap-2">
@@ -51,9 +54,7 @@ const DayRow = ({ date, tasks, onToggleTask, onDeleteTask }) => {
                     )}
                 </div>
 
-                {isCurrentDay && (
-                    <div className="mt-2 text-xs text-blue-600 font-medium">📌 Сегодня</div>
-                )}
+
             </div>
 
             {/* Tasks List - Droppable Zone */}

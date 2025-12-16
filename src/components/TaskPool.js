@@ -42,12 +42,16 @@ const TaskPool = ({ tasks, onAddTask, onToggleTask, onDeleteTask, onUpdateColor 
                 onClick={() => setIsExpanded(!isExpanded)}
             >
                 <div className="flex items-center justify-between">
-                    <h2 className="text-lg font-bold text-indigo-900">📋 Пул задач</h2>
+                    <div className="flex items-center gap-2">
+                        <h2 className="text-lg font-bold text-indigo-900">📋 Пул задач</h2>
+                        <span className="text-xs text-indigo-600 font-medium bg-indigo-50 px-2 py-1 rounded-full">
+                            {tasks.length}
+                        </span>
+                    </div>
                     <button className="text-indigo-600">
                         {isExpanded ? <FaChevronUp /> : <FaChevronDown />}
                     </button>
                 </div>
-                <p className="text-xs text-indigo-600 mt-1">{tasks.length} задач(и)</p>
             </div>
 
             {/* Collapsible content */}
@@ -114,9 +118,7 @@ const TaskPool = ({ tasks, onAddTask, onToggleTask, onDeleteTask, onUpdateColor 
                         }`}
                 >
                     {tasks.length === 0 ? (
-                        <div className="text-center py-8 text-indigo-400">
-                            <p className="text-sm">Создайте первую задачу! 🎯</p>
-                            <p className="text-xs mt-2">Перетаскивайте задачи на дни календаря</p>
+                        <div className="text-center text-indigo-400">
                         </div>
                     ) : (
                         <div className="space-y-2">
