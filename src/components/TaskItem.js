@@ -20,9 +20,10 @@ const TaskItem = ({ task, onToggle, onDelete, isDraggable = false }) => {
         <div
             ref={setNodeRef}
             style={style}
-            className={`group flex items-center gap-2 p-3 mb-2 bg-white rounded-lg shadow-sm hover:shadow-md transition-all ${isDragging ? 'opacity-50' : ''
-                }`}
+            {...listeners}
             {...attributes}
+            className={`group flex items-center gap-2 p-3 mb-2 bg-white rounded-lg shadow-sm hover:shadow-md transition-all touch-manipulation ${isDragging ? 'opacity-50' : ''
+                }`}
         >
             {/* Color Indicator */}
             <div
@@ -30,25 +31,17 @@ const TaskItem = ({ task, onToggle, onDelete, isDraggable = false }) => {
                 style={{ backgroundColor: task.color || '#3b82f6' }}
             />
 
-            {/* Drag Handle - only visible when draggable */}
-            {isDraggable && (
-                <div
-                    {...listeners}
-                    className="cursor-grab active:cursor-grabbing text-gray-400 hover:text-gray-600 pl-2"
-                >
-                    <FaGripVertical size={12} />
-                </div>
-            )}
-
-            {/* Checkbox */}
+            {/* Checkbox and Text - Stop propagation to prevent drag start */}
             <div
                 className="flex items-center flex-1 cursor-pointer ml-2"
                 onClick={() => onToggle(task.id)}
+                onPointerDown={(e) => e.stopPropagation()}
+                onTouchStart={(e) => e.stopPropagation()}
             >
                 <div
                     className={`w-5 h-5 rounded border-2 flex items-center justify-center mr-3 transition-all flex-shrink-0 ${task.completed
-                            ? 'border-gray-400 bg-gray-400'
-                            : 'border-gray-300 hover:border-gray-400'
+                        ? 'border-gray-400 bg-gray-400'
+                        : 'border-gray-300 hover:border-gray-400'
                         }`}
                     style={{
                         borderColor: task.completed ? task.color : undefined,
