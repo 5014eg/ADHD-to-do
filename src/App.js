@@ -11,7 +11,7 @@ function App() {
         <div className="flex flex-col h-screen bg-gray-100 overflow-hidden">
             {/* Header for Desktop/Mobile */}
             <header className="bg-white border-b border-gray-200 p-4 flex items-center justify-between z-20 shadow-sm">
-                <h1 className="text-xl font-bold text-gray-800 tracking-tight">Simple ADHD To-Do <span className="text-xs text-gray-400 font-normal">v1.1</span></h1>
+
                 <div className="hidden md:flex space-x-4">
                     <button
                         onClick={() => setActiveTab('week')}
