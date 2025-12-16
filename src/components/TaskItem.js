@@ -31,12 +31,10 @@ const TaskItem = ({ task, onToggle, onDelete, isDraggable = false }) => {
                 style={{ backgroundColor: task.color || '#3b82f6' }}
             />
 
-            {/* Checkbox and Text - Stop propagation to prevent drag start */}
+            {/* Checkbox and Text */}
             <div
                 className="flex items-center flex-1 cursor-pointer ml-2"
                 onClick={() => onToggle(task.id)}
-                onPointerDown={(e) => e.stopPropagation()}
-                onTouchStart={(e) => e.stopPropagation()}
             >
                 <div
                     className={`w-5 h-5 rounded border-2 flex items-center justify-center mr-3 transition-all flex-shrink-0 ${task.completed
@@ -47,11 +45,13 @@ const TaskItem = ({ task, onToggle, onDelete, isDraggable = false }) => {
                         borderColor: task.completed ? task.color : undefined,
                         backgroundColor: task.completed ? task.color : undefined
                     }}
+                    onPointerDown={(e) => e.stopPropagation()}
+                    onTouchStart={(e) => e.stopPropagation()}
                 >
                     {task.completed && <FaCheck className="text-white text-xs" />}
                 </div>
                 <span
-                    className={`text-sm flex-1 ${task.completed ? 'text-gray-400 line-through' : 'text-gray-800'
+                    className={`text-sm flex-1 select-none ${task.completed ? 'text-gray-400 line-through' : 'text-gray-800'
                         }`}
                 >
                     {task.text}

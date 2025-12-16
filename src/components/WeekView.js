@@ -1,6 +1,6 @@
 import React from 'react';
 import { addDays, startOfDay } from 'date-fns';
-import { DndContext, DragOverlay, PointerSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core';
+import { DndContext, DragOverlay, MouseSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core';
 import DayRow from './DayRow';
 import TaskPool from './TaskPool';
 
@@ -22,15 +22,15 @@ const WeekView = ({ tasksHook }) => {
 
     // Configure sensors for both mouse and touch
     const sensors = useSensors(
-        useSensor(PointerSensor, {
+        useSensor(MouseSensor, {
             activationConstraint: {
-                distance: 8, // 8px movement required to start dragging (prevents accidental drags)
+                distance: 10, // 10px movement required to start dragging
             },
         }),
         useSensor(TouchSensor, {
             activationConstraint: {
-                delay: 200, // 200ms press required for touch devices
-                tolerance: 8, // Allow 8px movement during the delay
+                delay: 250, // 250ms press required for touch devices
+                tolerance: 5, // Allow 5px movement during the delay
             },
         })
     );
