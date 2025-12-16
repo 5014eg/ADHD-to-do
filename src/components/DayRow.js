@@ -28,7 +28,7 @@ const DayRow = ({ date, tasks, onToggleTask, onDeleteTask }) => {
             <div className={`p-4 border-b border-gray-200 ${isCurrentDay ? 'bg-blue-100' : 'bg-white'
                 }`}>
                 <div className="flex items-center justify-between">
-                    <div>
+                    <div className="flex items-center gap-2">
                         <h2 className={`text-lg font-bold ${isCurrentDay ? 'text-blue-700' : 'text-gray-700'
                             }`}>
                             {format(date, 'EEEE')}
@@ -36,12 +36,12 @@ const DayRow = ({ date, tasks, onToggleTask, onDeleteTask }) => {
                         <p className="text-sm text-gray-500">{format(date, 'MMM d')}</p>
                     </div>
                     {totalCount > 0 && (
-                        <div className="text-right">
+                        <div className="flex items-center gap-2">
                             <div className={`text-sm font-semibold ${completedCount === totalCount ? 'text-green-600' : 'text-gray-600'
                                 }`}>
                                 {completedCount}/{totalCount}
                             </div>
-                            <div className="w-16 h-2 bg-gray-200 rounded-full overflow-hidden mt-1">
+                            <div className="w-16 h-2 bg-gray-200 rounded-full overflow-hidden">
                                 <div
                                     className="h-full bg-green-500 transition-all duration-300"
                                     style={{ width: `${(completedCount / totalCount) * 100}%` }}
