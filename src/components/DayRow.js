@@ -72,8 +72,6 @@ const DayRow = ({ date, tasks, onToggleTask, onDeleteTask }) => {
                                 </>
                             ) : isFutureDay ? (
                                 <>
-                                    <p className="text-2xl mb-2">📅</p>
-                                    <p className="text-sm">Планируйте заранее</p>
                                 </>
                             ) : (
                                 <>
