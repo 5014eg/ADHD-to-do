@@ -3,7 +3,7 @@ import { format, isToday, isPast, isFuture } from 'date-fns';
 import { useDroppable } from '@dnd-kit/core';
 import TaskItem from './TaskItem';
 
-const DayColumn = ({ date, tasks, onToggleTask, onDeleteTask }) => {
+const DayRow = ({ date, tasks, onToggleTask, onDeleteTask }) => {
     const { setNodeRef, isOver } = useDroppable({
         id: `day-${date.toISOString()}`,
         data: {
@@ -20,8 +20,9 @@ const DayColumn = ({ date, tasks, onToggleTask, onDeleteTask }) => {
 
     return (
         <div
-            className={`flex-shrink-0 w-full md:w-80 h-full flex flex-col border-r border-gray-200 transition-colors ${isCurrentDay ? 'bg-blue-50' : 'bg-gray-50'
+            className={`w-full flex flex-col border border-gray-200 rounded-lg shadow-sm transition-colors ${isCurrentDay ? 'bg-blue-50' : 'bg-white'
                 } ${isOver ? 'drop-zone-over' : ''}`}
+            style={{ minHeight: '200px' }}
         >
             {/* Day Header */}
             <div className={`p-4 border-b border-gray-200 ${isCurrentDay ? 'bg-blue-100' : 'bg-white'
@@ -100,4 +101,4 @@ const DayColumn = ({ date, tasks, onToggleTask, onDeleteTask }) => {
     );
 };
 
-export default DayColumn;
+export default DayRow;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { addDays, startOfDay } from 'date-fns';
 import { DndContext, DragOverlay, PointerSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core';
-import DayColumn from './DayColumn';
+import DayRow from './DayRow';
 import TaskPool from './TaskPool';
 
 const WeekView = ({ tasksHook }) => {
@@ -56,9 +56,9 @@ const WeekView = ({ tasksHook }) => {
 
     return (
         <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
-            <div className="flex h-full overflow-hidden">
-                {/* Task Pool - Mobile: full width collapsible, Desktop: fixed sidebar */}
-                <div className="w-full md:w-80 flex-shrink-0 h-full overflow-hidden">
+            <div className="flex flex-col h-full overflow-hidden">
+                {/* Task Pool - Fixed at top */}
+                <div className="w-full flex-shrink-0 z-10">
                     <TaskPool
                         tasks={poolTasks}
                         onAddTask={addTaskToPool}
@@ -68,11 +68,11 @@ const WeekView = ({ tasksHook }) => {
                     />
                 </div>
 
-                {/* Week Days - Horizontal scroll on mobile, grid on desktop */}
-                <div className="flex-1 flex overflow-x-auto overflow-y-hidden snap-x snap-mandatory md:snap-none bg-gray-100 h-full">
+                {/* Week Days - Vertical scroll */}
+                <div className="flex-1 overflow-y-auto bg-gray-100 p-4 space-y-4">
                     {days.map(date => (
-                        <div key={date.toISOString()} className="snap-start flex-shrink-0 w-full md:w-80 h-full">
-                            <DayColumn
+                        <div key={date.toISOString()} className="w-full">
+                            <DayRow
                                 date={date}
                                 tasks={getTasksForDate(date)}
                                 onToggleTask={toggleTask}

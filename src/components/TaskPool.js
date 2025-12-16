@@ -35,7 +35,7 @@ const TaskPool = ({ tasks, onAddTask, onToggleTask, onDeleteTask, onUpdateColor 
     const selectedColorObj = COLORS.find(c => c.name === selectedColor);
 
     return (
-        <div className="flex flex-col h-full bg-gradient-to-br from-indigo-50 to-purple-50 border-r border-indigo-200">
+        <div className="flex flex-col bg-gradient-to-br from-indigo-50 to-purple-50 border-b border-indigo-200 shadow-md">
             {/* Header */}
             <div
                 className="p-4 bg-white border-b border-indigo-200 cursor-pointer md:cursor-default"
@@ -43,15 +43,15 @@ const TaskPool = ({ tasks, onAddTask, onToggleTask, onDeleteTask, onUpdateColor 
             >
                 <div className="flex items-center justify-between">
                     <h2 className="text-lg font-bold text-indigo-900">📋 Пул задач</h2>
-                    <button className="md:hidden text-indigo-600">
+                    <button className="text-indigo-600">
                         {isExpanded ? <FaChevronUp /> : <FaChevronDown />}
                     </button>
                 </div>
                 <p className="text-xs text-indigo-600 mt-1">{tasks.length} задач(и)</p>
             </div>
 
-            {/* Collapsible content - always visible on desktop, collapsible on mobile */}
-            <div className={`flex-1 flex flex-col overflow-hidden ${isExpanded ? 'flex' : 'hidden md:flex'}`}>
+            {/* Collapsible content */}
+            <div className={`flex-1 flex flex-col overflow-hidden ${isExpanded ? 'flex' : 'hidden'}`}>
                 {/* Task Input Form */}
                 <div className="p-4 bg-white border-b border-indigo-100">
                     <form onSubmit={handleSubmit} className="space-y-2">
